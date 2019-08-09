@@ -98,10 +98,11 @@ public class CPaaSCallManagerTest {
         loginMethod();
         onView(withId(R.id.radio_singlemline)).perform(swipeRight());
         sleep(5000);
-        onView(withText("nav_sms_item")).perform(click());
-        sleep(3000);
-        onView(withId(R.id.participant_text_view)).check(matches(isDisplayed()));
-        //
+        onView(withId(R.id.nav_header_loggedin_user_name)).check(matches(isDisplayed()));
+        sleep(2000);
+        onView(withText("SMS")).perform(click());
+        onView(withId(R.id.conversation_item_image_view)).perform(click());
+        sleep(4000);
     }
 
     @After
