@@ -1,5 +1,6 @@
 package com.rbbn.cpaas.mobile.demo_java;
 
+import android.content.ClipData;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -23,8 +24,8 @@ import static android.support.test.espresso.action.ViewActions.swipeUp;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static java.lang.Thread.sleep;
 import static junit.framework.TestCase.fail;
 import static org.hamcrest.Matchers.allOf;
@@ -95,14 +96,16 @@ public class CPaaSCallManagerTest {
 
     @Test
     public void sms() throws InterruptedException {
-        loginMethod();
+        //loginMethod();
         onView(withId(R.id.radio_singlemline)).perform(swipeRight());
-        sleep(5000);
-        onView(withId(R.id.nav_header_loggedin_user_name)).check(matches(isDisplayed()));
         sleep(2000);
+        onView(withId(R.id.nav_header_loggedin_user_name)).check(matches(isDisplayed()));
         onView(withText("SMS")).perform(click());
-        onView(withId(R.id.conversation_item_image_view)).perform(click());
-        sleep(4000);
+        sleep(2000);
+        onData(instanceOf(ClipData.Item.class))
+                .inAdapterView(allOf(withId(android.R.id.list), isDisplayed()))
+                .atPosition(0)
+                .check(matches(isDisplayed()));
     }
 
     @After
