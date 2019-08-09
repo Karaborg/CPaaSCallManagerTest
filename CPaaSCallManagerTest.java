@@ -34,8 +34,8 @@ import static org.hamcrest.Matchers.is;
 @RunWith(AndroidJUnit4.class)
 public class CPaaSCallManagerTest {
 
-    private final String USERNAME_FALSE = "wrongUsername";
-    private final String PASSWORD_FALSE = "1234567";
+    private final String USER_USERNAME_FALSE = "wrongUsername";
+    private final String USER_PASSWORD_FALSE = "1234567";
 
     private Boolean isLoginSucceed = false;
 
@@ -59,10 +59,10 @@ public class CPaaSCallManagerTest {
         onView(withId(R.id.platformList_LoginActivity_Spinner)).perform(click());
         onData(allOf(is(instanceOf(String.class)))).atPosition(0).perform(click());
         onView(withId(R.id.email)).perform(clearText());
-        onView(withId(R.id.email)).perform(typeText(USERNAME_FALSE));
+        onView(withId(R.id.email)).perform(typeText(USER_USERNAME_FALSE));
         closeSoftKeyboard();
         onView(withId(R.id.password)).perform(clearText());
-        onView(withId(R.id.password)).perform(typeText(PASSWORD_FALSE));
+        onView(withId(R.id.password)).perform(typeText(USER_PASSWORD_FALSE));
         closeSoftKeyboard();
         onView(withId(R.id.get_new_token_button)).perform(longClick());
         sleep(5000);
@@ -81,10 +81,10 @@ public class CPaaSCallManagerTest {
         onView(withId(R.id.platformList_LoginActivity_Spinner)).perform(click());
         onData(allOf(is(instanceOf(String.class)))).atPosition(0).perform(click());
         onView(withId(R.id.email)).perform(clearText());
-        onView(withId(R.id.email)).perform(typeText("bcdefg"));
+        onView(withId(R.id.email)).perform(typeText(USER_USERNAME_FALSE));
         closeSoftKeyboard();
         onView(withId(R.id.password)).perform(clearText());
-        onView(withId(R.id.password)).perform(typeText("123456789"));
+        onView(withId(R.id.password)).perform(typeText(USER_PASSWORD_FALSE));
         closeSoftKeyboard();
         onView(withId(R.id.login_form)).perform(swipeUp());
         onView(withId(R.id.login_button)).perform(click());
